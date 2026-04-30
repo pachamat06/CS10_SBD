@@ -4,7 +4,6 @@ const db = require('./src/config/database');
 
 const PORT = process.env.PORT || 3000;
 
-// Test database connection
 db.query('SELECT NOW()')
   .then(() => {
     console.log('Database connected successfully');

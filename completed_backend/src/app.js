@@ -17,7 +17,7 @@ const app = express();
 // Security middleware
 app.use(helmet());
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
+  origin: process.env.CORS_ORIGIN || 'http://localhost:5173',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
@@ -31,18 +31,18 @@ const authLimiter = rateLimit({
   message: 'Too many requests from this IP, please try again after 15 minutes',
 });
 app.use('/auth', authLimiter);
-app.use('/user/register', authLimiter);
+//app.use('/user/register', authLimiter);
 
 // Body parsing
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Request logging (optional)
-app.use(requestLogger);
+app.use(requestLogger); 
 
 // API routes
 app.use('/user', userRoutes);
-app.use('/items', itemRoutes);
+app.use('/item', itemRoutes);
 app.use('/transaction', transactionRoutes);
 app.use('/auth', authRoutes);
 app.use('/reports', reportRoutes);
