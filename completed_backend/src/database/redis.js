@@ -1,16 +1,8 @@
 const Redis = require("ioredis");
 
-const redis = new Redis({
-    host: "127.0.0.1",
-    port: 6379,
-    });
+const redis = new Redis(process.env.REDIS_URL);
 
-    redis.on("connect", () => {
-    console.log("Berhasil terhubung ke Redis Server");
-    });
+redis.on("connect", () => console.log("Berhasil terhubung ke Redis Server"));
+redis.on("error", (err) => console.error("Gagal terhubung ke Redis:", err.message));
 
-    redis.on("error", (err) => {
-    console.error("Gagal terhubung ke Redis:", err.message);
-    });
-
-    module.exports = redis;
+module.exports = redis;
