@@ -104,6 +104,19 @@ class UserService {
  
     return { source: 'database', user: safeUser };
   }
+
+  static async getAllUsers() {
+    return await User.findAll();
+  }
+ 
+  static async deleteUser(id) {
+    const user = await User.findById(id);
+    if (!user) throw new AppError('User not found', 404);
+    await User.delete(id);
+    const cacheKey = `user:${user.email}`;
+    await redis.del(cacheKey);
+    console.log(`[Cache Invalidation] Key "${cacheKey}" dihapus dari Redis`);
+  }
 }
 
 module.exports = UserService;

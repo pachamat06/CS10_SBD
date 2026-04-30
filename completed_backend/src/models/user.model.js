@@ -19,6 +19,21 @@ class User {
     return result.rows[0];
   }
 
+  static async findAll() {
+    const result = await db.query(
+      'SELECT id, name, username, email, phone, balance, created_at FROM users ORDER BY id ASC'
+    );
+    return result.rows;
+  }
+
+  static async delete(id) {
+    const result = await db.query(
+      'DELETE FROM users WHERE id = $1 RETURNING id',
+      [id]
+    );
+    return result.rows[0];
+  }
+
   static async update(id, { name, username, email, phone, password, balance }) {
     const result = await db.query(
       `UPDATE users SET 

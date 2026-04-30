@@ -4,6 +4,7 @@ import CardList from "./components/CardList";
 import Counter from "./components/Counter";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Admin from "./pages/Admin";
 
 function PrivateRoute({ children }) {
   const token = localStorage.getItem("token");
@@ -25,6 +26,14 @@ export default function App() {
                 <Counter />
                 <CardList />
               </div>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <PrivateRoute>
+              <Admin />
             </PrivateRoute>
           }
         />

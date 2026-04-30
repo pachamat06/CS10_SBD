@@ -12,6 +12,8 @@ router.post('/login', UserController.login);
 router.put('/update', authenticateToken, userUpdateValidation, validate, UserController.updateProfile);
 router.get('/history', authenticateToken, UserController.getTransactionHistory);
 router.get('/total-spent', authenticateToken, UserController.getTotalSpent);
+router.get('/all', authenticateToken, UserController.getAllUsers);
+router.delete('/:id', authenticateToken, UserController.deleteUser);
 router.get('/:email', authenticateToken, UserController.getUserByEmail);
 
 module.exports = router;

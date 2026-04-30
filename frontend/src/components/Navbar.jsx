@@ -12,10 +12,7 @@ export default function Navbar() {
 
   return (
     <nav className="flex justify-between items-center px-8 py-4 bg-blue-600 text-white">
-      <h1
-        className="text-xl font-bold cursor-pointer"
-        onClick={() => navigate("/")}
-      >
+      <h1 className="text-xl font-bold cursor-pointer" onClick={() => navigate("/")}>
         pachamat.06
       </h1>
       <ul className="flex gap-6 items-center">
@@ -26,14 +23,18 @@ export default function Navbar() {
         </li>
         {user ? (
           <>
+            {/* Link Admin */}
+            <li>
+              <a className="cursor-pointer hover:underline" onClick={() => navigate("/admin")}>
+                Admin
+              </a>
+            </li>
             <li className="text-blue-200 text-sm">
               Halo, <span className="font-semibold text-white">{user.name}</span>
             </li>
             <li>
-              <button
-                onClick={handleLogout}
-                className="bg-white text-blue-600 font-semibold px-4 py-1.5 rounded hover:bg-blue-50 transition"
-              >
+              <button onClick={handleLogout}
+                className="bg-white text-blue-600 font-semibold px-4 py-1.5 rounded hover:bg-blue-50 transition">
                 Logout
               </button>
             </li>
@@ -41,18 +42,13 @@ export default function Navbar() {
         ) : (
           <>
             <li>
-              <a
-                className="cursor-pointer hover:underline"
-                onClick={() => navigate("/login")}
-              >
+              <a className="cursor-pointer hover:underline" onClick={() => navigate("/login")}>
                 Login
               </a>
             </li>
             <li>
-              <button
-                onClick={() => navigate("/register")}
-                className="bg-white text-blue-600 font-semibold px-4 py-1.5 rounded hover:bg-blue-50 transition"
-              >
+              <button onClick={() => navigate("/register")}
+                className="bg-white text-blue-600 font-semibold px-4 py-1.5 rounded hover:bg-blue-50 transition">
                 Register
               </button>
             </li>
